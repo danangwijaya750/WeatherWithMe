@@ -336,7 +336,7 @@ class Daily {
     }
     clouds = json['clouds'];
     pop = json['pop'] == null ? 0.0 : json['pop'].toDouble();
-    rain = json['rain'];
+    rain = json['rain'] == null ? 0.0 : json['rain'].toDouble();
     uvi = json['uvi']==null ? 0.0 : json['uvi'].toDouble();
   }
 
@@ -378,7 +378,7 @@ class Temp {
   Temp({this.day, this.min, this.max, this.night, this.eve, this.morn});
 
   Temp.fromJson(Map<String, dynamic> json) {
-    day = json['day'];
+    day = json['day']== null ? 0.0 : json['day'].toDouble();
     min = json['min'] == null ? 0.0 : json['min'].toDouble();
     max = json['max'] == null ? 0.0 : json['max'].toDouble();
     night = json['night'];

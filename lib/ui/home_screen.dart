@@ -10,6 +10,8 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:weather_with_me/bloc/weather_bloc.dart';
 import 'package:weather_with_me/model/weather_model.dart';
 
+import 'forecast_screen.dart';
+
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenStateful createState() => _HomeScreenStateful();
@@ -89,7 +91,13 @@ class _HomeScreenStateful extends State<HomeScreen> {
                      height: 60,
                      child : RaisedButton(
                        color: HexColor("#FFFFFF"),
-                        onPressed: ()=>{},
+                        onPressed: ()=>{
+                        Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                        builder: (context) => ForecastScreen(data: data,), ),
+                        )
+                        },
                         textColor: HexColor("#444E72"),
                         child: Text("Weather Forecast",style: TextStyle(fontSize: 18),),
                         shape: RoundedRectangleBorder(
@@ -97,7 +105,15 @@ class _HomeScreenStateful extends State<HomeScreen> {
                         ),
                       )
                   ),
-                )
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 20),
+                  child:Center (
+                    child:
+                    Text(
+                    "Data Provided By openweathermap.org"
+                  ,style: TextStyle(color: Colors.white,fontSize: 15)),
+                ))
               ],
             )));
   }
@@ -177,7 +193,7 @@ class _HomeScreenStateful extends State<HomeScreen> {
     String ampm = DateFormat("HH").format(date);
     print(DateFormat("yyyy-MM-dd HH-mm-ss").format(date));
     if (data.current.weather[0].main == "Clear") {
-      if (int.parse(ampm) >= 18) {
+      if (int.parse(ampm) >= 18|| int.parse(ampm)<5) {
         return Image(image: AssetImage('assets/moon.png'),width: 150,height: 150);
       } else {
         return Image(image: AssetImage('assets/sunny.png'),width: 150,height: 150);
@@ -187,7 +203,7 @@ class _HomeScreenStateful extends State<HomeScreen> {
     } else if (data.current.weather[0].main == "Thunderstorm") {
       return Image(image: AssetImage('assets/thunder.png'),width: 150,height: 150);
     } else if (data.current.weather[0].main == "Clouds") {
-      if (int.parse(ampm) >= 18) {
+      if (int.parse(ampm) >= 18|| int.parse(ampm)<5) {
         return Image(image: AssetImage('assets/moon_cloudy.png'),width: 150,height: 150);
       } else {
         return Image(image: AssetImage('assets/sun_cloudy.png'),width: 150,height: 150);
