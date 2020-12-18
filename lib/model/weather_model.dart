@@ -221,8 +221,8 @@ class Hourly {
 
   Hourly.fromJson(Map<String, dynamic> json) {
     dt = json['dt'];
-    temp = json['temp'];
-    feelsLike = json['feels_like'];
+    temp = json['temp'] == null ? 0.0 : json['temp'].toDouble();
+    feelsLike = json['feels_like'] == null ? 0.0 : json['feels_like'].toDouble();
     pressure = json['pressure'];
     humidity = json['humidity'];
     dewPoint = json['dew_point'] == null ? 0.0 : json['dew_point'].toDouble();
@@ -271,7 +271,7 @@ class Rain {
   Rain({this.d1h});
 
   Rain.fromJson(Map<String, dynamic> json) {
-    d1h = json['1h'];
+    d1h = json['1h'] == null ? 0.0 : json['1h'].toDouble();
   }
 
   Map<String, dynamic> toJson() {
@@ -326,7 +326,7 @@ class Daily {
     pressure = json['pressure'];
     humidity = json['humidity'];
     dewPoint = json['dew_point'] == null ? 0.0 : json['dew_point'].toDouble();
-    windSpeed = json['wind_speed'];
+    windSpeed = json['wind_speed'] == null ? 0.0 : json['wind_speed'].toDouble();
     windDeg = json['wind_deg'];
     if (json['weather'] != null) {
       weather = new List<Weather>();
@@ -409,8 +409,8 @@ class FeelsLike {
   FeelsLike.fromJson(Map<String, dynamic> json) {
     day = json['day'];
     night = json['night'] == null ? 0.0 : json['night'].toDouble();
-    eve = json['eve'];
-    morn = json['morn'];
+    eve = json['eve'] == null ? 0.0 : json['eve'].toDouble();
+    morn = json['morn']  == null ? 0.0 : json['morn'].toDouble();
   }
 
   Map<String, dynamic> toJson() {
